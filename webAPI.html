@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>lab1</title>
+
+        <!--Inserting style from topic-->
+        <style>
+            /*Colour Variables*/
+            
+        </style>
+
+        <!--Inserting bootstrap CSS-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <!--Insesrting Bootstrap CSS icons-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="navstyle">
+        <div class="collapse" id="searchCollapse">
+            <div class="card card-body" style="background-color: var(--navbar-color)">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-md">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <span class="bi bi-globe2"></span>
+                    ITWD6.408
+                </a>
+                <button class="btn d-inline d-md-none btn-primary collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#searchCollapse" aria-expanded="false" aria-controls="searchCollapse">
+                    <span class="bi bi-search"></span>
+                </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" 
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-md-flex justify-content-center" id="navbarNavAltMarkup">
+                    <div class="navbar-nav float-end">
+                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="forms.html">Forms</a>
+                        <a class="nav-link active" href="webAPI.html">WebAPI</a>
+                        <a class="nav-link" href="demos.html">JavaScript</a>
+                        <a class="nav-link" href="research.html">Research</a>
+                    </div>
+                </div>
+                <button class="btn d-inline d-none d-sm-none d-md-inline d-lg-inline d-xl-inline d-xxl-inline btn-primary collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#searchCollapse" aria-expanded="false" aria-controls="searchCollapse">
+                    <span class="bi bi-search"></span>
+                </button>
+            </div>
+        </nav>
+    </div>
+    <main>
+        <!--this bit needs to be an accordion dropdown thing like the demos one-->
+        <!--this bit is now an accordion dropdown but doesn't fucking work for some reason-->
+        <div class="accordion row align-items-start" id="webapi">
+            <div class="row col-12 col-md-2">
+                <div class="accordion-header col-6 col-md-12">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#jsonapi" aria-expanded="true" aria-controls="jsonapi">
+                        JSON Rules</button>
+                </div>
+                <div class="accordion-header col-6 col-md-12">
+                    <button class="accordion-button collapsed"type="button" data-bs-toggle="collapse" data-bs-target="#restapi" aria-expanded="false" aria-controls="restapi">
+                        REST API</button>
+                </div>
+            </div>
+            <div class="accordion-item col-12 col-md-10">
+                <div class="accordion-collapse collapse show" id="jsonapi" data-bs-parent="#webapi">
+                    <div class="accordion-body">
+                        <h1>JSON Rules</h1>
+                        <div class="row">
+                            <div class="card col-12 col-md-6">
+                                Ideally I would have some interesting text here
+                            </div>
+                            <div class="card col-12 col-md-6">
+                                However I have sort of run out of time so this will be the placeholder
+                            </div>
+                            <div class="card col-12 col-md-6">
+                                Some more interesting text about JSON to read would be here as well
+                            </div>
+                            <div class="card col-12 col-md-6">
+                                text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-collapse collapse" id="restapi" data-bs-parent="#webapi">
+                    <div class="accordion-body">
+                        <h1>REST API</h1>
+                        <h2>List of submitted data</h2>
+                        <div id="rawdata" class="row">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="module">
+        //Supabase API Endpoint
+        const supabaseApiUrl = 'https://ieauibjpemdfmktrzvkk.supabase.co/rest/v1/'
+        const supabaseKey = 'sb_publishable_E18dY44Azi4B1_igqqpqpw_Y4XkO4wY'
+
+        //Using Fetch API
+        //Fetch API allows you to make HTTP requests directly to Supabase RESTful endpoints
+        //interact directly with /rest/v1/ enpoint with raw HTTP by passing credentials through request "headers" or "query parameters"
+        async function fetchDataRaw() {
+            //SELECT lname, fname, gender, FROM survey_data
+            const url = `${supabaseApiUrl}survey_data?select=fname,lname,gender,adr1,adr2,city,phonebrand,phoneprovider,studyphone`;
+            try {
+                //Make a GET request to Supabase endpoint with appropriate headers
+                const response = await fetch(url, {
+                    method: "GET",
+                    headers: {
+                        'apikey': supabaseKey,
+                        'Authorisation': `Bearer ${supabaseKey}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                //Check if the response is NOT OK
+                if (!response.ok) {
+                    throw new Error(`HTTP Error! Status: ${response.status}`);
+                }
+                //parse JSON response and log user data to console(?)
+                const data = await response.json();
+                console.log("Data", data);
+                return data;
+            }
+            catch (error) {
+                console.error("Fetch error", error);
+                alert("Error fetching data");
+                return[]
+            }
+        }
+        //Handle async return promise thingy
+        fetchDataRaw().then(data => {
+            const outputElement = document.getElementById("rawdata");
+            //Log fetched data in the console as a JSON string
+            console.log(JSON.stringify(data, null, 2));
+
+            //Loop through data and display each record in a formatted way
+            data.forEach(record => {
+                const recordElement = document.createElement("div");
+                recordElement.className = "col-12 col-md-6 bg-secondary border border-dark-subtle"
+                recordElement.innerHTML = `
+                    <p>First name: ${record.fname}</p>
+                    <p>Last name: ${record.lname}</p>
+                    <p>Gender: ${record.gender}</p>
+                    <p>Address Line 1: ${record.adr1}</p>
+                    <p>Address Line 2: ${record.adr2}</p>
+                    <p>City: ${record.city}</p>
+                    <p>Phone Brand: ${record.phonebrand}</p>
+                    <p>Phone Network: ${record.phoneprovider}</p>
+                    <p>Study on Phone?: ${record.studyphone}</p>
+                `;
+                outputElement.appendChild(recordElement);
+            });
+        });
+    </script>
+    <!--Inserting bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+
+</html>

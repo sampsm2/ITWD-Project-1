@@ -1,0 +1,43 @@
+/*Color variables*/
+:root {
+    --navbar-color: #DAF7A6;
+    --showcase-color: #000000;
+    --bio-color: #FFC300;
+    --webtech-color: #EC7063;
+    --comptence-color: #9CDA0D;
+    --statement-color: #F27A09;
+}
+
+/* 3D Flip animation - not available in Bootstrap */
+/* Set 3D perspective for flip card container */
+.flip-card {
+    perspective: 1000px;
+    height: 320px; 
+    cursor: pointer;
+}
+
+/* Inner card container for 3D transform */
+.flip-card-inner {
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Rotate card 180 degrees when flipped class is active */
+.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Hide back face of elements during 3D rotation */
+.flip-card-front {
+    backface-visibility: hidden;
+    background: linear-gradient(135deg, pink, orange);
+}
+.flip-card-back {
+    backface-visibility: hidden;
+    background: rgb(218, 215, 215);
+}
+
+/* Rotate back side to face backward */
+.flip-card-back {
+    transform: rotateY(180deg);
+}
