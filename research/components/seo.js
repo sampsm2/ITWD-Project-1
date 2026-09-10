@@ -24,6 +24,20 @@ export const seo = {
                         of your website on search engine.
                         What actions do you plan to take to improve the SEO of your Project 1 website?
                     </p>
+                    <p>
+                        Search Engine Optimisation (SEO) is the way a website becomes easier to find for users via search engines such as Google.<br>
+                        5 ways to improve SEO are:
+                        <ul>
+                            <li><strong>Make an interesting or useful site</strong> - if a site gains more traffic, it will be higher on a broad search, and the best way for that is to have interesting, useful, up-to-date content.</li>
+                            <li><strong>Use keywords in URLs and titles</strong> - most search engines use these to find web pages, and users will be more likely to open a web page if it looks more relevant.</li>
+                            <li><strong>Optimise for mobile as well as desktop</strong> - it's quite likely someone looking at your page is using a mobile phone. Bootstrap is excellent for responsive layouts.</li>
+                            <li><strong>Use relevant images with descriptive alt text</strong> - having relevant, high-quality images encourages users to find your site. Alt text can help a search engine to find a relevant image to display on a search.</li>
+                            <li><strong>Promote the website</strong> - social media advertising, community engagement, and word of mouth are some of the most effective ways to bring users to the site, improving traffic.</li>
+                        </ul>
+                    </p>
+                    <p>
+                        I do not plan to improve the SEO of this site, but if I did I would likely make the URLs more readable and promote it via community methods. For its purpose as a small-scale "portfolio", providing a link should be sufficient.
+                    </p>
 
                 </div>
 
