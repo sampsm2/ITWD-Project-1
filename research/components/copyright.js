@@ -22,10 +22,23 @@ export const copyright = {
                 <!-- Card back -->
                 <div class="flip-card-back position-absolute w-100 h-100 p-3 rounded overflow-y-auto">
                     
-                    <p class="fs-6 lh-base">
-                        Copyright, Creative Common (CC) Licenses, Fair Use: describe basic principles of copyright, 
-                        4 types of CC licences and Fair Use with image as illustration
-                        Analyze the potential copyright issues associated with your Project 1. What type of Creative Commons (CC) license would you choose for your Project-1 website, and why?
+                    <p>
+                        Copyright protects the intellectual property of the individual or organisation that created a work.<br>
+                        Fair Use permits the use of copyrighter material without seeking permission from the holder, usually in uses such as education, parody, and criticism, for non-profit reasons.<br>
+                        Creative Commons (CC) provides a public liense for distribution of an otherwise copyrighted work, and can be used when the author wants people to share, use, and build from their work.
+                    </p>
+                    <p>
+                        There are 4 main types of CC license:
+                        <ul>
+                            <li>CC-BY: Attribution - the work can be modified and the derivative displayed or distributed if the original author is given credit</li>
+                            <li>CC-SA: ShareAlike - derivative works must be distributed under a license not more restrictive than the original work</li>
+                            <li>CC-NC: NonCommercial - the work and derivative works cannot be used for commercial purposes</li>
+                            <li>CC-ND: NoDerivatives - the work can be used and distributed, but only the original, and derivatives must not be shared</li>
+                        </ul>
+                    </p>
+                    <p>
+                        Some potential copyright issues in this project may be some of the images and code used in the project, as for some of it I have somewhat blindly trusted the content in the handouts to be free to use.<br>
+                        The CC license I would choose for this project is CC-BY-SA. I don't see a reason to restrict the use of the code, and none of the images belong to me.
                     </p>
 
                 </div>
